@@ -32,5 +32,6 @@ jobs:
       with:
         version: '>= 363.0.0'
 
-    - name: 'Use gcloud CLI'
-      run: 'gcloud info'
+    - name: 'Cloud build'
+      run: gcloud builds submit --tag us-central1-docker.pkg.dev/bootdev-450906/notely-ar-repo:latest
+
