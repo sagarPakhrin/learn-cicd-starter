@@ -4,7 +4,6 @@ on:
 jobs:
   Deploy:
     runs-on: ubuntu-latest
-     # Add "id-token" with the intended permissions.
 
     permissions:
       contents: 'read'
@@ -32,6 +31,8 @@ jobs:
       with:
         version: '>= 363.0.0'
 
-    - name: 'Cloud build'
-      run: gcloud builds submit --tag us-central1-docker.pkg.dev/bootdev-450906/notely-ar-repo:latest
+    - name: Authenticate Docker for Artifact Registry
+      run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
+    - name: 'Cloud build'
+      run: gcloud builds submit --tag us-central1-docker.pkg.dev/bootdev-450906/notely-ar-repo/notely-ar-app:latest
